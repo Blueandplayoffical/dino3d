@@ -1,59 +1,61 @@
-const CACHE_STATIC = "trex-static-v1";
-const CACHE_DYNAMIC = "trex-dynamic-v1";
+const BASE = "/dino3d/";
 
-/* Files we KNOW exist */
+const STATIC = "trex-static-v3";
+const DYNAMIC = "trex-dynamic-v3";
+
 const STATIC_FILES = [
-  "./",
-  "./index.html",
-  "./low.html",
-  "./css/style.min.css",
+  BASE,
+  BASE + "index.html",
+  BASE + "low.html",
 
-  "./js/config-high.js",
-  "./js/config-low.js",
-  "./js/build.min.js",
+  BASE + "css/style.min.css",
 
-  "./libs/three/three.min.js",
-  "./libs/three/controls/OrbitControls.js",
-  "./libs/three/helpers/CameraHelper.js",
-  "./libs/three/loaders/OBJLoader.js",
-  "./libs/vox/vox.min.js",
-  "./libs/howler/howler.min.js",
-  "./libs/nebula/three-nebula.js",
-  "./libs/visibly/visibly.js"
+  BASE + "js/config-high.js",
+  BASE + "js/config-low.js",
+  BASE + "js/build.min.js",
+
+  BASE + "libs/three/three.min.js",
+  BASE + "libs/three/controls/OrbitControls.js",
+  BASE + "libs/three/helpers/CameraHelper.js",
+  BASE + "libs/three/loaders/OBJLoader.js",
+  BASE + "libs/vox/vox.min.js",
+  BASE + "libs/howler/howler.min.js",
+  BASE + "libs/nebula/three-nebula.js",
+  BASE + "libs/visibly/visibly.js"
 ];
 
-/* Install */
+/* install */
 self.addEventListener("install", e => {
   self.skipWaiting();
   e.waitUntil(
-    caches.open(CACHE_STATIC).then(cache => cache.addAll(STATIC_FILES))
+    caches.open(STATIC).then(cache => cache.addAll(STATIC_FILES))
   );
 });
 
-/* Activate */
+/* activate */
 self.addEventListener("activate", e => {
   e.waitUntil(self.clients.claim());
 });
 
-/* Fetch — THIS is the magic */
+/* fetch */
 self.addEventListener("fetch", e => {
   const req = e.request;
 
-  // navigation pages
+  // handle page navigation
   if (req.mode === "navigate") {
     e.respondWith(
-      fetch(req).catch(() => caches.match("./index.html"))
+      fetch(req).catch(() => caches.match(BASE + "index.html"))
     );
     return;
   }
 
-  // cache-first for assets
+  // asset caching
   e.respondWith(
     caches.match(req).then(cached => {
       if (cached) return cached;
 
       return fetch(req).then(res => {
-        return caches.open(CACHE_DYNAMIC).then(cache => {
+        return caches.open(DYNAMIC).then(cache => {
           cache.put(req, res.clone());
           return res;
         });
