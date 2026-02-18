@@ -11,6 +11,8 @@
 	<link rel="preload" as="image" href="media/repeat.png" />
 	<link rel="preload" as="image" href="media/preloader-dino.png">
 	<link rel="preload" as="image" href="media/3d-title.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 
 </head>
 <body>
@@ -81,6 +83,13 @@
 	<script src="libs/visibly/visibly.js"></script>
 	<script src="js/config-low.js?patch=3x1"></script>
 	<script src="js/build.min.js?patch=3x1"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js")
+    .then(() => console.log("Offline ready"))
+    .catch(err => console.log(err));
+}
+</script>
 
 </body>
 </html>
