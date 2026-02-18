@@ -83,13 +83,12 @@
 	<script src="libs/visibly/visibly.js"></script>
 	<script src="js/config-high.js?patch=3x1"></script>
 	<script src="js/build.min.js?patch=3x1"></script>
-<script>
+    <script>
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js")
-    .then(() => console.log("Offline ready"))
-    .catch(err => console.log(err));
+  navigator.serviceWorker.register("/dino3d/sw.js");
 }
 </script>
+
 
 </body>
 </html>
