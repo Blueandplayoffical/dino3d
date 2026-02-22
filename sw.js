@@ -1,7 +1,7 @@
 const BASE = "/dino3d/";
 
-const STATIC = "trex-static-v3";
-const DYNAMIC = "trex-dynamic-v3";
+const STATIC = "trex-static-v6";
+const DYNAMIC = "trex-dynamic-v6";
 
 const STATIC_FILES = [
   BASE,
