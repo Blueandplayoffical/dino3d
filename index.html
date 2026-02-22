@@ -11,13 +11,15 @@
 	<link rel="preload" as="image" href="media/repeat.png" />
 	<link rel="preload" as="image" href="media/preloader-dino.png">
 	<link rel="preload" as="image" href="media/3d-title.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/dino3d/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/dino3d/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/dino3d/favicon-16x16.png">
 
-<link rel="manifest" href="/dino3d/manifest.json">
-<meta name="theme-color" content="#000000">
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/dino3d/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/dino3d/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/dino3d/favicon-16x16.png">
 
+	<!-- Manifest -->
+	<link rel="manifest" href="/dino3d/manifest.json">
+	<meta name="theme-color" content="#000000">
 
 </head>
 <body>
@@ -26,20 +28,12 @@
 		<div class="progress">
 	        <div class="chart">
 	            <div id="game-load-progress" class="bar lime bar-0">
-	                <div class="face top">
-	                    <div class="growing-bar"></div>
-	                </div>
-	                <div class="face side-0">
-	                    <div class="growing-bar"></div>
-	                </div>
-	                <div class="face floor">
-	                    <div class="growing-bar"></div>
-	                </div>
+	                <div class="face top"><div class="growing-bar"></div></div>
+	                <div class="face side-0"><div class="growing-bar"></div></div>
+	                <div class="face floor"><div class="growing-bar"></div></div>
 	                <div class="face side-a"></div>
 	                <div class="face side-b"></div>
-	                <div class="face side-1">
-	                    <div class="growing-bar"></div>
-	                </div>
+	                <div class="face side-1"><div class="growing-bar"></div></div>
 	            </div>
 	        </div>
 		</div>
@@ -71,7 +65,6 @@
 	<script src="libs/three/loaders/OBJLoader.js"></script>
 	<script src="libs/vox/vox.min.js"></script>
 
-	<!-- Shaders & Postprocessing -->
 	<script src="libs/three/postprocessing/EffectComposer.js"></script>
 	<script src="libs/three/postprocessing/RenderPass.js"></script>
 	<script src="libs/three/postprocessing/ShaderPass.js"></script>
@@ -84,16 +77,19 @@
 
 	<script src="libs/nebula/three-nebula.js"></script>
 	<script src="libs/howler/howler.min.js"></script>
-
 	<script src="libs/visibly/visibly.js"></script>
+
 	<script src="js/config-high.js?patch=3x1"></script>
 	<script src="js/build.min.js?patch=3x1"></script>
-    <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/dino3d/sw.js");
-}
-</script>
 
+	<!-- Correct Service Worker Registration -->
+	<script>
+	if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("/dino3d/sw.js", {
+			scope: "/dino3d/"
+		});
+	}
+	</script>
 
 </body>
 </html>
