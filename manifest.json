@@ -1,24 +1,21 @@
 {
   "name": "T-Rex Run 3D",
   "short_name": "T-Rex",
-  "start_url": "/dino3d/index.html",
+  "start_url": "/dino3d/",
   "scope": "/dino3d/",
   "display": "fullscreen",
   "background_color": "#000000",
   "theme_color": "#000000",
-
   "icons": [
     {
       "src": "/dino3d/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "/dino3d/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
